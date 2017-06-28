@@ -1,3 +1,18 @@
 puz_puz_homepage:
-    path:     /{id}
+    path:     /
     defaults: { _controller: PUZPuzBundle:Default:index }
+
+puz_playlist_create:
+    path:     /playlist
+    defaults: { _controller: PUZPuzBundle:Playlist:create }
+    method: POST
+
+puz_playlist_show:
+    path:     /playlist/{id}
+    defaults: { _controller: PUZPuzBundle:Playlist:show }
+    method: GET
+
+puz_playlist_list:
+    path:     /playlist
+    defaults: { _controller: PUZPuzBundle:Playlist:list }
+    method: GET

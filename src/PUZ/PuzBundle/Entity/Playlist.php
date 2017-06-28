@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="playlist")
  * @ORM\Entity(repositoryClass="PUZ\PuzBundle\Repository\PlaylistRepository")
+ *
+ *  @Serializer\ExclusionPolicy("ALL")
  */
 class Playlist
 {
@@ -26,6 +28,8 @@ class Playlist
      * @var string
      *
      * @ORM\Column(name="title_playlist", type="string", length=255)
+     *
+     *  @Serializer\Expose
      */
     private $title_playlist;
 
