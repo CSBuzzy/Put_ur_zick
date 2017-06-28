@@ -28,6 +28,10 @@ class Message
      */
     private $content;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="messages")
+     */
+    private $user;
 
     /**
      * Get id
@@ -61,5 +65,29 @@ class Message
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \PUZ\PuzBundle\Entity\User $user
+     *
+     * @return Message
+     */
+    public function setUser(\PUZ\PuzBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \PUZ\PuzBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

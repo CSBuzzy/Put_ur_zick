@@ -160,6 +160,12 @@ class User
      * @ORM\ManyToMany(targetEntity="PUZ\PuzBundle\Entity\Playlist")
      */
     private $playlists;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="User")
+     */
+    private $messages;
+
     /**
      * Constructor
      */
@@ -201,5 +207,39 @@ class User
     public function getPlaylists()
     {
         return $this->playlists;
+    }
+
+    /**
+     * Add message
+     *
+     * @param \PUZ\PuzBundle\Entity\Message $message
+     *
+     * @return User
+     */
+    public function addMessage(\PUZ\PuzBundle\Entity\Message $message)
+    {
+        $this->messages[] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Remove message
+     *
+     * @param \PUZ\PuzBundle\Entity\Message $message
+     */
+    public function removeMessage(\PUZ\PuzBundle\Entity\Message $message)
+    {
+        $this->messages->removeElement($message);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }
