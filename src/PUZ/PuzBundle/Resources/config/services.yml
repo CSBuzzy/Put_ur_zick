@@ -1,0 +1,4 @@
+services:
+#    puz_puz.example:
+#        class: PUZ\PuzBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

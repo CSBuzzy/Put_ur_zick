@@ -1,0 +1,3 @@
+puz_puz_homepage:
+    path:     /{id}
+    defaults: { _controller: PUZPuzBundle:Default:index }

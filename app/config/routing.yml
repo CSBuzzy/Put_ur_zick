@@ -1,0 +1,3 @@
+puz_puz:
+    resource: "@PUZPuzBundle/Resources/config/routing.yml"
+    prefix:   /
