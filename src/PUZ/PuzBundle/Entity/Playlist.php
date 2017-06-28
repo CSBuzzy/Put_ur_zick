@@ -25,23 +25,9 @@ class Playlist
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title_playlist", type="string", length=255)
      */
-    private $title;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255)
-     */
-    private $author;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="url", type="text")
-     */
-    private $url;
+    private $title_playlist;
 
     /**
      * Get id
@@ -56,6 +42,11 @@ class Playlist
      * @ORM\ManyToMany(targetEntity="PUZ\PuzBundle\Entity\User")
      */
     private $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Song", mappedBy="Playlist")
+     */
+    private $songs;
     /**
      * Constructor
      */
@@ -99,74 +90,60 @@ class Playlist
     }
 
     /**
-     * Set title
+     * Set titlePlaylist
      *
-     * @param string $title
+     * @param string $titlePlaylist
      *
      * @return Playlist
      */
-    public function setTitle($title)
+    public function setTitlePlaylist($titlePlaylist)
     {
-        $this->title = $title;
+        $this->title_playlist = $titlePlaylist;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get titlePlaylist
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitlePlaylist()
     {
-        return $this->title;
+        return $this->title_playlist;
     }
 
     /**
-     * Set author
+     * Add song
      *
-     * @param string $author
+     * @param \PUZ\PuzBundle\Entity\Song $song
      *
      * @return Playlist
      */
-    public function setAuthor($author)
+    public function addSong(\PUZ\PuzBundle\Entity\Song $song)
     {
-        $this->author = $author;
+        $this->songs[] = $song;
 
         return $this;
     }
 
     /**
-     * Get author
+     * Remove song
      *
-     * @return string
+     * @param \PUZ\PuzBundle\Entity\Song $song
      */
-    public function getAuthor()
+    public function removeSong(\PUZ\PuzBundle\Entity\Song $song)
     {
-        return $this->author;
+        $this->songs->removeElement($song);
     }
 
     /**
-     * Set url
+     * Get songs
      *
-     * @param string $url
-     *
-     * @return Playlist
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setUrl($url)
+    public function getSongs()
     {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
+        return $this->songs;
     }
 }
