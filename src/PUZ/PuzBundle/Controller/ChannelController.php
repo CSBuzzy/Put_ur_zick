@@ -2,29 +2,29 @@
 
 namespace PUZ\PuzBundle\Controller;
 
-use PUZ\PuzBundle\Entity\Playlist;
+use PUZ\PuzBundle\Entity\Channel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
-class PlaylistController extends Controller
+class ChannelController extends Controller
 {
     public function createAction(Request $request)
     {
         $data = $request->getContent(); //on recoit du json que l'on transforme en objet
-        $playlist = $this->get('jms_serializer')->deserialize($data, 'PUZ\PuzBundle\Entity\Playlist', 'json');
+        $channel = $this->get('jms_serializer')->deserialize($data, 'PUZ\PuzBundle\Entity\Channel', 'json');
 
         $em = $this->getDoctrine()->getManager(); // on enregistre l'objet en bdd
-        $em->persist($playlist);
+        $em->persist($channel);
         $em->flush();
 
         return new Response('', Response::HTTP_CREATED);
     }
 
-    public function showAction(Playlist $playlist)
+    public function showAction(Channel $channel)
     {
-        $data = $this->get('jms_serializer')->serialize($playlist, 'json');
+        $data = $this->get('jms_serializer')->serialize($channel, 'json');
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
@@ -33,12 +33,12 @@ class PlaylistController extends Controller
 
     }
 
-    //retourner toutes les playlist
+    //retourner toutes les channels
     public function listAction()
     {
-        $playlist = $this->getDoctrine()->getRepository('PUZPuzBundle:Playlist')->findAll();
+        $channel = $this->getDoctrine()->getRepository('PUZPuzBundle:Channel')->findAll();
 
-        $data = $this->get('jms_serializer')->serialize($playlist, 'json');
+        $data = $this->get('jms_serializer')->serialize($channel, 'json');
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');

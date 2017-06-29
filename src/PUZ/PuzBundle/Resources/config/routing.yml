@@ -2,19 +2,19 @@ puz_puz_homepage:
     path:     /
     defaults: { _controller: PUZPuzBundle:Default:index }
 
-puz_playlist_create:
-    path:     /playlist
-    defaults: { _controller: PUZPuzBundle:Playlist:create }
+puz_channel_create:
+    path:     /channel
+    defaults: { _controller: PUZPuzBundle:Channel:create }
     methods: POST
 
-puz_playlist_show:
-    path:     /playlist/{id}
-    defaults: { _controller: PUZPuzBundle:Playlist:show }
+puz_channel_show:
+    path:     /channel/{id}
+    defaults: { _controller: PUZPuzBundle:Channel:show }
     methods: GET
 
-puz_playlist_list:
-    path:     /playlist
-    defaults: { _controller: PUZPuzBundle:Playlist:list }
+puz_channel_list:
+    path:     /channel
+    defaults: { _controller: PUZPuzBundle:Channel:list }
     methods: GET
 
 

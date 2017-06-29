@@ -14,9 +14,9 @@ class UserController extends Controller
     {
         $data = $request->getContent(); //on recoit du json que l'on transforme en objet
         $user = $this->get('jms_serializer')->deserialize($data, 'PUZ\PuzBundle\Entity\User', 'json');
-        //$em = $this->getDoctrine()->getManager(); // on enregistre l'objet en bdd
-        //$em->persist($user);
-        //$em->flush();
+        $em = $this->getDoctrine()->getManager(); // on enregistre l'objet en bdd
+        $em->persist($user);
+        $em->flush();
 
         return new Response('', Response::HTTP_CREATED);
     }
@@ -24,10 +24,9 @@ class UserController extends Controller
     public function showAction(User $user)
     {
         $data = $this->get('jms_serializer')->serialize($user, 'json');
-        dump($user);die;
 
-        //$response = new Response($data);
-        //$response->headers->set('Content-Type', 'application/json');
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
 
         return $response;
 

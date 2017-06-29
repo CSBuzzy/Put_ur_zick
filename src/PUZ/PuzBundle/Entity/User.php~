@@ -177,38 +177,4 @@ class User
     {
         return $this->messages;
     }
-
-    /**
-     * Add channel
-     *
-     * @param \PUZ\PuzBundle\Entity\Channel $channel
-     *
-     * @return User
-     */
-    public function addChannel(\PUZ\PuzBundle\Entity\Channel $channel)
-    {
-        $this->channels[] = $channel;
-
-        return $this;
-    }
-
-    /**
-     * Remove channel
-     *
-     * @param \PUZ\PuzBundle\Entity\Channel $channel
-     */
-    public function removeChannel(\PUZ\PuzBundle\Entity\Channel $channel)
-    {
-        $this->channels->removeElement($channel);
-    }
-
-    /**
-     * Get channels
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getChannels()
-    {
-        return $this->channels;
-    }
 }
