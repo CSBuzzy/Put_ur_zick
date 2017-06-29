@@ -2,29 +2,29 @@
 
 namespace PUZ\PuzBundle\Controller;
 
-use PUZ\PuzBundle\Entity\Playlist;
+use PUZ\PuzBundle\Entity\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
-class PlaylistController extends Controller
+class MessageController extends Controller
 {
     public function createAction(Request $request)
     {
         $data = $request->getContent(); //on recoit du json que l'on transforme en objet
-        $playlist = $this->get('jms_serializer')->deserialize($data, 'PUZ\PuzBundle\Entity\Playlist', 'json');
+        $message = $this->get('jms_serializer')->deserialize($data, 'PUZ\PuzBundle\Entity\Message', 'json');
 
         $em = $this->getDoctrine()->getManager(); // on enregistre l'objet en bdd
-        $em->persist($playlist);
+        $em->persist($message);
         $em->flush();
 
         return new Response('', Response::HTTP_CREATED);
     }
 
-    public function showAction(Playlist $playlist)
+    public function showAction(Message $message)
     {
-        $data = $this->get('jms_serializer')->serialize($playlist, 'json');
+        $data = $this->get('jms_serializer')->serialize($message, 'json');
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
@@ -33,12 +33,12 @@ class PlaylistController extends Controller
 
     }
 
-    //retourner toutes les playlist
+    //retourner tous les messages
     public function listAction()
     {
-        $playlist = $this->getDoctrine()->getRepository('PUZPuzBundle:Playlist')->findAll();
+        $message = $this->getDoctrine()->getRepository('PUZPuzBundle:Message')->findAll();
 
-        $data = $this->get('jms_serializer')->serialize($playlist, 'json');
+        $data = $this->get('jms_serializer')->serialize($message, 'json');
 
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
