@@ -16,3 +16,46 @@ puz_playlist_list:
     path:     /playlist
     defaults: { _controller: PUZPuzBundle:Playlist:list }
     methods: GET
+
+
+puz_song_create:
+    path:     /song
+    defaults: { _controller: PUZPuzBundle:Song:createSong }
+    methods: POST
+
+puz_song_show:
+    path:     /song/{id}
+    defaults: { _controller: PUZPuzBundle:Song:showSong }
+    methods: GET
+
+puz_song_list:
+    path:     /song
+    defaults: { _controller: PUZPuzBundle:Song:listSong }
+    methods: GET
+
+
+puz_message_create:
+    path:     /message
+    defaults: { _controller: PUZPuzBundle:Message:create }
+    methods: POST
+
+puz_message_show:
+    path:     /message/{id}
+    defaults: { _controller: PUZPuzBundle:Message:show }
+    methods: GET
+
+puz_message_list:
+    path:     /message
+    defaults: { _controller: PUZPuzBundle:Message:list }
+    methods: GET
+
+
+puz_user_create:
+    path:     /user
+    defaults: { _controller: PUZPuzBundle:User:create }
+    methods: POST
+
+puz_user_show:
+    path:     /user/{id}
+    defaults: { _controller: PUZPuzBundle:User:show }
+    methods: GET
