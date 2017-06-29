@@ -13,7 +13,7 @@ class PlaylistController extends Controller
     public function createAction(Request $request)
     {
         $data = $request->getContent(); //on recoit du json que l'on transforme en objet
-        $playlist = $this->get('jms_serializer')->deserialize($data, 'PuzBundle\Entity\Playlist', 'json');
+        $playlist = $this->get('jms_serializer')->deserialize($data, 'PUZ\PuzBundle\Entity\Playlist', 'json');
 
         $em = $this->getDoctrine()->getManager(); // on enregistre l'objet en bdd
         $em->persist($playlist);
@@ -36,7 +36,8 @@ class PlaylistController extends Controller
     //retourner toutes les playlist
     public function listAction()
     {
-        $playlist = $this->getDoctrine()->getRepository('PuzBundle:Playlist')->findAll();
+        $playlist = $this->getDoctrine()->getRepository('PUZPuzBundle:Playlist')->findAll();
+
         $data = $this->get('jms_serializer')->serialize($playlist, 'json');
 
         $response = new Response($data);
